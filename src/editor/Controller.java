@@ -9,12 +9,7 @@ import java.awt.event.*;
 
 public class Controller implements ActionListener, MouseListener, ComponentListener {
 
-    public enum SupportedActions {
-        rectangle, connection, comment, name
-    }
-
     private Model mModel;
-    private SupportedActions mCurrentAction;
 
     private Tool mCurrentTool;
 
@@ -32,7 +27,6 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
             case "r" : {
                 System.out.println("Rectangle has been pressed!");
                 mModel.setMouseEvent(false);
-                //mCurrentAction = SupportedActions.rectangle;
                 setmCurrentTool(new RectangleTool(mModel));
             } break;
             case "comment" : {
@@ -43,18 +37,16 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
             case "c" : {
                 System.out.println("Line has been pressed!");
                 mModel.setMouseEvent(false);
-                //mCurrentAction = SupportedActions.connection;
                 setmCurrentTool(new RectConnectionTool(mModel));
             } break;
             case "cl" : {
                 System.out.println("CommentLine has been pressed!");
                 mModel.setMouseEvent(false);
-                //mCurrentAction = SupportedActions.connection;
                 setmCurrentTool(new CommentConnectionTool(mModel));
             } break;
             case "name" : {
                 mModel.setMouseEvent(false);
-                mCurrentAction = SupportedActions.name;
+                setmCurrentTool(new NamingTool(mModel));
             } break;
         }
 
@@ -75,24 +67,6 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
     @Override
     public void mouseReleased(MouseEvent _e) {
         mModel.setMouseEvent(true);
-
-        /*
-        switch (mCurrentAction) {
-            case rectangle: {
-                mModel.generateOnMousePos(_e.getX(), _e.getY(), _e.getButton(), mCurrentAction);
-            } break;
-            case comment: {
-                mModel.generateOnMousePos(_e.getX(), _e.getY(), _e.getButton(), mCurrentAction);
-            } break;
-            case connection: {
-                mModel.checkPosition(_e.getX(), _e.getY());
-            } break;
-            case name: {
-                String elementName = mModel.getmObservers().get(0).getmNameElementTextField().getText();
-                mModel.generateNameTag(_e.getX(), _e.getY(), elementName);
-            } break;
-        }
-        */
 
         mCurrentTool.mouseReleased(_e);
     }
@@ -125,9 +99,7 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
 
     @Override
     public void componentShown(ComponentEvent _e) {
-        /*int compWidth = _e.getComponent().getWidth();
-        int compHeight = _e.getComponent().getHeight();
-        mModel.setSize(compWidth, compHeight);*/
+
     }
 
     @Override

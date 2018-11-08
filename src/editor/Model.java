@@ -1,10 +1,7 @@
 package editor;
 
-import org.w3c.dom.css.Rect;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -33,104 +30,9 @@ public class Model {
      * Keeps track if mouse event has been triggered
      */
     private boolean mMouseEvent;
-    /**
-     * X Position of the mouse cursor when clicked
-     */
-    private int mMousePosX;
-    /**
-     * Y Position of the mouse cursor when clicked
-     */
-    private int mMousePosY;
-    /**
-     * Which mouse button has been clicked on event
-     */
-    private int mMouseButton;
 
-    private UMLRectangle mRectPosition1;
-    private UMLRectangle mRectPosition2;
     private final static float dash1[] = {5};
     private final static BasicStroke dashedStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, dash1, 0.0f);
-
-    /*
-    public void checkPosition(int _posX, int _posY) {
-        UMLRectangle shapeToFind = null;
-
-        for (UMLRectangle rect: mRectangles) {
-            if (rect.contains(_posX, _posY)) {
-                shapeToFind = rect;
-            }
-        }
-
-        for (CommentBox comment: mCommentBoxes) {
-            if (comment.contains(_posX, _posY)) {
-                shapeToFind = comment;
-            }
-        }
-
-        if (shapeToFind != null && mRectPosition1 == null) {
-            mRectPosition1 = shapeToFind;
-        } else if (shapeToFind != null && mRectPosition2 == null && shapeToFind != mRectPosition1) {
-            mRectPosition2 = shapeToFind;
-            generateLineBetweenRectangles();
-        }
-
-    }
-
-    private void generateLineBetweenRectangles() {
-        if (mRectPosition1 instanceof CommentBox && mRectPosition2 instanceof CommentBox) {
-            System.out.println("Can't connect 2 comment boxes!");
-            mRectPosition1 = null;
-            mRectPosition2 = null;
-        } else {
-            if (mRectPosition1 instanceof CommentBox || mRectPosition2 instanceof CommentBox) {
-                //mCommentLines.add(line);
-                CommentConnection commentLine = new CommentConnection(mRectPosition1, mRectPosition2);
-                mCommentLines.add(commentLine);
-            } else {
-                RectConnection rectLine = new RectConnection(mRectPosition1, mRectPosition2);
-                mLines.add(rectLine);
-            }
-
-            mRectPosition1 = null;
-            mRectPosition2 = null;
-
-            updateObservers();
-        }
-    }
-    */
-
-    public void generateNameTag(int _posX, int _posY, String _name) {
-        UMLRectangle shapeToFind = null;
-        UMLConnection connectionToFind = null;
-
-        for (UMLRectangle rect: mRectangles) {
-            if (rect.contains(_posX, _posY)) {
-                shapeToFind = rect;
-            }
-        }
-
-        Rectangle testRect = new Rectangle(_posX, _posY, 10, 10);
-        for (RectConnection connection: mLines) {
-
-            if (connection.getmConnectionLine().intersects(testRect)) {
-                connectionToFind = connection;
-            }
-        }
-
-        for (CommentConnection commConnection: mCommentLines) {
-            if (commConnection.getmConnectionLine().intersects(testRect)) {
-                connectionToFind = commConnection;
-            }
-        }
-
-        if (shapeToFind != null) {
-            shapeToFind.setmName(_name);
-            updateObservers();
-        } else if (connectionToFind != null) {
-            connectionToFind.setmName(_name);
-            updateObservers();
-        }
-    }
 
     public void addRectangle(UMLRectangle _rect) {
         mRectangles.add(_rect);
@@ -227,4 +129,11 @@ public class Model {
         return mCommentBoxes;
     }
 
+    public ArrayList<RectConnection> getmLines() {
+        return mLines;
+    }
+
+    public ArrayList<CommentConnection> getmCommentLines() {
+        return mCommentLines;
+    }
 }
