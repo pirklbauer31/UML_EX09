@@ -1,10 +1,7 @@
 package editor;
 
 import editor.Model;
-import tools.CommentTool;
-import tools.RectConnectionTool;
-import tools.RectangleTool;
-import tools.Tool;
+import tools.*;
 
 import java.awt.event.*;
 
@@ -48,6 +45,12 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
                 mModel.setMouseEvent(false);
                 //mCurrentAction = SupportedActions.connection;
                 setmCurrentTool(new RectConnectionTool(mModel));
+            } break;
+            case "cl" : {
+                System.out.println("CommentLine has been pressed!");
+                mModel.setMouseEvent(false);
+                //mCurrentAction = SupportedActions.connection;
+                setmCurrentTool(new CommentConnectionTool(mModel));
             } break;
             case "name" : {
                 mModel.setMouseEvent(false);

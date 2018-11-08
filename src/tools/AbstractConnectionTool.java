@@ -1,10 +1,10 @@
 package tools;
 
+import editor.CommentBox;
 import editor.Model;
 import editor.UMLConnection;
 import editor.UMLRectangle;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 

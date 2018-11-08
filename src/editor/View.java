@@ -37,6 +37,11 @@ public class View implements DataObserver {
         mDrawConnectionButton.setActionCommand("c");
         mDrawConnectionButton.addActionListener(_controller);
 
+        JButton mDrawCommentConnectionButton = new JButton();
+        mDrawCommentConnectionButton.setText("CommentLine");
+        mDrawCommentConnectionButton.setActionCommand("cl");
+        mDrawCommentConnectionButton.addActionListener(_controller);
+
         JButton mNameElementButton = new JButton();
         mNameElementButton.setText("Name");
         mNameElementButton.setActionCommand("name");
@@ -61,6 +66,7 @@ public class View implements DataObserver {
         actionPanel.add(mDrawRectButton);
         actionPanel.add(mDrawCommentBoxButton);
         actionPanel.add(mDrawConnectionButton);
+        actionPanel.add(mDrawCommentConnectionButton);
         actionPanel.add(mNameElementButton);
         actionPanel.add(mNameElementTextField);
 

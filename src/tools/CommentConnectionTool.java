@@ -5,22 +5,22 @@ import editor.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class RectConnectionTool extends AbstractConnectionTool {
+public class CommentConnectionTool extends AbstractConnectionTool {
 
     private Model mModel;
 
-    public RectConnectionTool(Model _model) {
+    public CommentConnectionTool(Model _model) {
         mModel = _model;
     }
 
     @Override
     UMLConnection createConnection(double x1, double y1, double x2, double y2) {
-        return new RectConnection(new Point((int)x1, (int)y1), new Point((int)x2, (int)y2));
+        return new CommentConnection(new Point((int)x1, (int)y1), new Point((int)x2, (int)y2));
     }
 
     @Override
     ArrayList<UMLRectangle> getSourceList() {
-        return mModel.getmRectangles();
+        return mModel.getmCommentBoxes();
     }
 
     @Override
@@ -30,11 +30,10 @@ public class RectConnectionTool extends AbstractConnectionTool {
 
     @Override
     void addConnection(UMLConnection _connection) {
-        if (_connection instanceof RectConnection) {
-            RectConnection rect = new RectConnection(_connection.getEndPointA(), _connection.getEndPointB());
-            mModel.addRectConnection(rect);
+        if (_connection instanceof CommentConnection) {
+            CommentConnection connection = new CommentConnection(_connection.getEndPointA(), _connection.getEndPointB());
+            mModel.addCommentConnection(connection);
             mModel.updateObservers();
         }
-
     }
 }

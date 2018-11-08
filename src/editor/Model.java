@@ -17,7 +17,7 @@ public class Model {
 
     private ArrayList<UMLRectangle> mRectangles = new ArrayList<>();
     private ArrayList<RectConnection> mLines = new ArrayList<>();
-    private ArrayList<CommentBox> mCommentBoxes = new ArrayList<>();
+    private ArrayList<UMLRectangle> mCommentBoxes = new ArrayList<>();
     private ArrayList<CommentConnection> mCommentLines = new ArrayList<>();
 
     /**
@@ -182,7 +182,7 @@ public class Model {
             }
 
             graphics2D.setStroke(dashedStroke);
-            for (CommentBox comment: mCommentBoxes) {
+            for (UMLRectangle comment: mCommentBoxes) {
                 graphics2D.draw(comment);
             }
 
@@ -223,7 +223,7 @@ public class Model {
         return mRectangles;
     }
 
-    public ArrayList<CommentBox> getmCommentBoxes() {
+    public ArrayList<UMLRectangle> getmCommentBoxes() {
         return mCommentBoxes;
     }
 
