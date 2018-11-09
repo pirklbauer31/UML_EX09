@@ -40,6 +40,8 @@ public abstract class AbstractConnectionTool implements Tool {
         if (mSource != null && mTarget != null) {
             mConnection = createConnection(mSource.getCenterX(), mSource.getCenterY(), mTarget.getCenterX(), mTarget.getCenterY());
             addConnection(mConnection);
+            //mSource.addConnection(mConnection);
+            //mTarget.addConnection(mConnection);
 
             mConnection = null;
             mSource = null;

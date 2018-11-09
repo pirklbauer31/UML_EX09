@@ -48,6 +48,10 @@ public class Controller implements ActionListener, MouseListener, ComponentListe
                 mModel.setMouseEvent(false);
                 setmCurrentTool(new NamingTool(mModel));
             } break;
+            case "move" : {
+                mModel.setMouseEvent(false);
+                setmCurrentTool(new MovingTool(mModel));
+            } break;
         }
 
 

@@ -24,6 +24,11 @@ public abstract class UMLConnection {
         mConnectionLine = line;
     }
 
+    private void resetLine() {
+        Line2D.Double line = new Line2D.Double(endPointA, endPointB);
+        mConnectionLine = line;
+    }
+
     public String getmName() {
         return mName;
     }
@@ -38,6 +43,7 @@ public abstract class UMLConnection {
 
     public void setEndPointA(Point endPointA) {
         this.endPointA = endPointA;
+        resetLine();
     }
 
     public Point getEndPointB() {
@@ -46,6 +52,7 @@ public abstract class UMLConnection {
 
     public void setEndPointB(Point endPointB) {
         this.endPointB = endPointB;
+        resetLine();
     }
 
     public Line2D getmConnectionLine() {

@@ -52,6 +52,11 @@ public class View implements DataObserver {
       //  mNameElementTextField.setText("Test");
       //  mNameElementTextField.addActionListener(_controller);
 
+        JButton mMoveRectangleButton = new JButton();
+        mMoveRectangleButton.setText("Move");
+        mMoveRectangleButton.setActionCommand("move");
+        mMoveRectangleButton.addActionListener(_controller);
+
         mPanel.setBackground(Color.white);
         mPanel.addComponentListener(_controller);
         mPanel.addMouseListener(_controller);
@@ -69,6 +74,7 @@ public class View implements DataObserver {
         actionPanel.add(mDrawCommentConnectionButton);
         actionPanel.add(mNameElementButton);
         actionPanel.add(mNameElementTextField);
+        actionPanel.add(mMoveRectangleButton);
 
         mFrame.setVisible(true);
     }
