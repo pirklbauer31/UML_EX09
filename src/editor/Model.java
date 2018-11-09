@@ -66,6 +66,10 @@ public class Model {
                  mRectangles) {
                 graphics2D.draw(rec);
 
+                for (Rectangle compartment: rec.getmCompartments()) {
+                    graphics2D.draw(compartment);
+                }
+
                 String elementName = rec.getmName();
                 if (elementName != null && !elementName.isEmpty()) {
                     graphics2D.drawString(elementName, rec.x+10, rec.y+15);

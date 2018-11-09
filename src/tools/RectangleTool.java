@@ -18,6 +18,7 @@ public class RectangleTool implements Tool {
         UMLRectangle rec = new UMLRectangle();
         rec.setLocation(_e.getX(), _e.getY());
         rec.setSize(80, 60);
+        rec.addCompartment();
 
         mModel.addRectangle(rec);
 
