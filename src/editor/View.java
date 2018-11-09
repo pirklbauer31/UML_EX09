@@ -11,7 +11,7 @@ public class View implements DataObserver {
      */
     private DrawingPanel mPanel = new DrawingPanel();
 
-
+    private DrawingPanel mOverViewPanel = new DrawingPanel();
 
     private JTextField mNameElementTextField = new JTextField();
 
@@ -61,12 +61,22 @@ public class View implements DataObserver {
         mPanel.addComponentListener(_controller);
         mPanel.addMouseListener(_controller);
 
+        mOverViewPanel.setBackground(Color.lightGray);
+
         JPanel actionPanel = new JPanel();
-        actionPanel.setLayout(new FlowLayout());
         actionPanel.setBackground(Color.lightGray);
 
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.setBackground(Color.black);
+
+        mPanel.setPreferredSize(new Dimension(900, 800));
+        mOverViewPanel.setPreferredSize(new Dimension(100, 800));
+
         mFrame.setLayout(new BorderLayout());
-        mFrame.add(mPanel, BorderLayout.CENTER);
+        mFrame.add(contentPanel, BorderLayout.CENTER);
+        contentPanel.add(mPanel, BorderLayout.CENTER);
+        contentPanel.add(mOverViewPanel, BorderLayout.EAST);
         mFrame.add(actionPanel, BorderLayout.SOUTH);
         actionPanel.add(mDrawRectButton);
         actionPanel.add(mDrawCommentBoxButton);
@@ -80,9 +90,12 @@ public class View implements DataObserver {
     }
 
     @Override
-    public void update(BufferedImage _data) {
+    public void update(BufferedImage _data, BufferedImage _overviewData) {
         mPanel.setmImage(_data);
         mPanel.repaint();
+
+        mOverViewPanel.setmImage(_overviewData);
+        mOverViewPanel.repaint();
     }
 
     public DrawingPanel getmPanel() {
@@ -101,4 +114,7 @@ public class View implements DataObserver {
         this.mNameElementTextField = mNameElementTextField;
     }
 
+    public DrawingPanel getmOverViewPanel() {
+        return mOverViewPanel;
+    }
 }

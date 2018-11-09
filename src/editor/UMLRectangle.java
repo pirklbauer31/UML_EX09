@@ -30,6 +30,18 @@ public class UMLRectangle extends Rectangle {
         mCompartments.add(rec);
     }
 
+    public UMLRectangle getMiniatureVersion(double scale) {
+        UMLRectangle smallerRect = new UMLRectangle();
+        smallerRect.setLocation((int)(this.getX()/scale), (int)(this.getY()/scale));
+        smallerRect.setSize((int)(this.getWidth()/scale), (int)(this.getHeight()/scale));
+
+        for (Rectangle compartment: mCompartments) {
+            smallerRect.addCompartment();
+        }
+
+        return smallerRect;
+    }
+
     public void addConnection(UMLConnection _connection) { mConnections.add(_connection); }
 
     public String getmName() {
